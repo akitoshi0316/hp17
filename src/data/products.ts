@@ -56,6 +56,7 @@ export const HP17_PRODUCTS: ProductItem[] = [
 
 export const TECH_STACK = {
   frontend: ['HTML5 / Modern JS', 'React / Next.js', 'TypeScript', 'Tailwind CSS'],
+  aiTools: ['Gemini', 'Lovable'],
   infra: ['Vercel', 'GitHub Actions'],
   philosophy: 'シンプルで役立つWebアプリを、最高の手触りでつくる。'
 };

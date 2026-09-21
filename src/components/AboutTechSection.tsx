@@ -1,4 +1,4 @@
-import { Zap, UserCheck, Code, Server, Quote } from 'lucide-react';
+import { Zap, UserCheck, Code, Server, Quote, Sparkles } from 'lucide-react';
 import { TECH_STACK } from '../data/products.ts';
 
 export default function AboutTechSection() {
@@ -81,6 +81,25 @@ export default function AboutTechSection() {
                     className="px-3.5 py-1.5 rounded-lg bg-gray-200/70 dark:bg-gray-800/80 text-gray-800 dark:text-gray-200 text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
                   >
                     {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 mb-2.5">
+                <Sparkles className="w-3.5 h-3.5 text-gray-400" />
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  AI &amp; PROTOTYPING
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {TECH_STACK.aiTools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-3.5 py-1.5 rounded-lg bg-gray-200/70 dark:bg-gray-800/80 text-gray-800 dark:text-gray-200 text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    {tool}
                   </span>
                 ))}
               </div>
