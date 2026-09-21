@@ -32,8 +32,13 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
         >
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-emerald-500 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition-transform duration-300">
-              hp
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-300 border border-sky-500/40 bg-black flex-shrink-0">
+              <img
+                src="/hp17-logo.jpg"
+                alt="hp17 GROUP Logo"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-wider text-gray-900 dark:text-white flex items-center gap-1.5">
