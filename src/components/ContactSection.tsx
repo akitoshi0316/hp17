@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { Send, CheckCircle2, AlertCircle, X } from 'lucide-react';
 import { ContactFormData } from '../types.ts';
 
-const TARGET_EMAIL = 'hp17.host@proton.me';
+const TARGET_EMAILS = ['hp17.host@proton.me', 'hp17.host@gmail.com'];
 
 export default function ContactSection() {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -33,27 +33,37 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      // Send directly to hp17.host@proton.me using standard FormSubmit AJAX endpoint
-      const response = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `【hp17 GROUP お問い合わせ】${formData.name}様より (${getTargetAppName(formData.targetApp)})`,
-          _replyto: formData.email,
-          _template: 'table',
-          お名前: formData.name,
-          返信先メール: formData.email,
-          対象サービス: getTargetAppName(formData.targetApp),
-          メッセージ: formData.message,
-          送信日時: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
-        })
-      });
+    const payload = {
+      _subject: `【hp17 GROUP お問い合わせ】${formData.name}様より (${getTargetAppName(formData.targetApp)})`,
+      _replyto: formData.email,
+      _cc: 'hp17.host@gmail.com',
+      _template: 'table',
+      お名前: formData.name,
+      返信先メール: formData.email,
+      対象サービス: getTargetAppName(formData.targetApp),
+      メッセージ: formData.message,
+      送信日時: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+    };
 
-      if (response.ok) {
+    try {
+      // Send to both email addresses concurrently to guarantee delivery to both inboxes
+      const requests = TARGET_EMAILS.map((email) =>
+        fetch(`https://formsubmit.co/ajax/${email}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+      );
+
+      const responses = await Promise.allSettled(requests);
+      const anySuccess = responses.some(
+        (r) => r.status === 'fulfilled' && r.value.ok
+      );
+
+      if (anySuccess) {
         setToastMessage({
           title: '送信完了',
           desc: 'お問い合わせを受け付けました。メッセージをお送りいただきありがとうございます！',
@@ -66,7 +76,7 @@ export default function ContactSection() {
           message: ''
         });
       } else {
-        throw new Error('送信に失敗しました');
+        throw new Error('すべての送信先への送信に失敗しました');
       }
     } catch {
       // Fallback to mailto if network blocked
@@ -74,7 +84,7 @@ export default function ContactSection() {
       const body = encodeURIComponent(
         `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n対象サービス: ${getTargetAppName(formData.targetApp)}\n\n【メッセージ】\n${formData.message}`
       );
-      window.open(`mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}`, '_blank');
+      window.open(`mailto:${TARGET_EMAILS.join(',')}?subject=${subject}&body=${body}`, '_blank');
 
       setToastMessage({
         title: 'メーラーを起動しました',
