@@ -1,0 +1,6 @@
+{
+  "name": "hp17グループ | 総合ソフトウェア開発グループ",
+  "description": "hp17グループの公式サイト。Deck Study、Typing Pro、Water Weberなど提供中のWebサービス、グループ概要、使用技術、お問い合わせ。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
