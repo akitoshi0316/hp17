@@ -82,53 +82,53 @@ export default function Hero({ isDark }: HeroProps) {
               <div className="absolute -inset-2 bg-gradient-to-r from-sky-500 to-emerald-500 rounded-3xl blur-2xl opacity-25 dark:opacity-40"></div>
 
               {/* Terminal Mockup */}
-              <div className="relative rounded-2xl bg-[#0f172a] border border-gray-800 shadow-2xl overflow-hidden text-left font-mono">
+              <div className="relative rounded-2xl bg-white/95 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden text-left font-mono transition-colors duration-300">
                 {/* Terminal top bar */}
-                <div className="bg-[#1e293b]/90 px-4 py-3 flex items-center justify-between border-b border-gray-800">
+                <div className="bg-gray-100/90 dark:bg-[#1e293b]/90 px-4 py-3 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                     <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
                     <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                    <span className="text-xs text-gray-400 ml-2 font-medium">hp17-services.json</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2 font-medium">hp17-services.json</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[10px] bg-emerald-500/15 text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-semibold tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <div className="flex items-center gap-1.5 text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-semibold tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
                     ONLINE
                   </div>
                 </div>
 
                 {/* Code Body */}
-                <div className="p-6 text-xs sm:text-sm space-y-3.5 text-gray-300">
-                  <p className="text-gray-500 text-xs">// hp17 Active Services List</p>
+                <div className="p-6 text-xs sm:text-sm space-y-3.5 text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                  <p className="text-gray-400 dark:text-gray-500 text-xs">// hp17 Active Services List</p>
                   <div>
-                    <span className="text-purple-400">const</span>{' '}
-                    <span className="text-sky-300">activeApps</span> = [
+                    <span className="text-purple-600 dark:text-purple-400 font-semibold">const</span>{' '}
+                    <span className="text-sky-600 dark:text-sky-300 font-semibold">activeApps</span> = [
                   </div>
                   <div className="pl-4 space-y-1">
-                    <p className="text-emerald-400 font-medium">
+                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
                       &apos;1. hp17 Deck Study&apos;,
                     </p>
-                    <p className="text-emerald-400 font-medium">
+                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
                       &apos;2. hp17 Typing Pro&apos;,
                     </p>
-                    <p className="text-emerald-400 font-medium">
+                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
                       &apos;3. hp17 Water Weber&apos;
                     </p>
                   </div>
                   <p>];</p>
 
-                  <div className="pt-4 border-t border-gray-800/80 space-y-2.5">
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-800/80 space-y-2.5">
                     <a
                       href="https://hp17-deck-study.vercel.app"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-800 text-sky-200 transition-colors group"
+                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200/80 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-gray-800 dark:text-sky-200 border border-gray-200/60 dark:border-transparent transition-colors group"
                     >
                       <span className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Deck Study
                       </span>
-                      <span className="text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
                         READY <ExternalLink className="w-3 h-3 opacity-70" />
                       </span>
                     </a>
@@ -137,13 +137,13 @@ export default function Hero({ isDark }: HeroProps) {
                       href="https://hp17-typing-pro.vercel.app"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-800 text-sky-200 transition-colors group"
+                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200/80 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-gray-800 dark:text-sky-200 border border-gray-200/60 dark:border-transparent transition-colors group"
                     >
                       <span className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Typing Pro
                       </span>
-                      <span className="text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
                         READY <ExternalLink className="w-3 h-3 opacity-70" />
                       </span>
                     </a>
@@ -152,13 +152,13 @@ export default function Hero({ isDark }: HeroProps) {
                       href="https://hp17-water-weber.vercel.app"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-800 text-sky-200 transition-colors group"
+                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200/80 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-gray-800 dark:text-sky-200 border border-gray-200/60 dark:border-transparent transition-colors group"
                     >
                       <span className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Water Weber
                       </span>
-                      <span className="text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
                         READY <ExternalLink className="w-3 h-3 opacity-70" />
                       </span>
                     </a>
