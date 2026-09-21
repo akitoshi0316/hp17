@@ -36,50 +36,101 @@ export default function ContactSection() {
     const payload = {
       _subject: `【hp17 GROUP お問い合わせ】${formData.name}様より (${getTargetAppName(formData.targetApp)})`,
       _replyto: formData.email,
-      _cc: 'hp17.host@gmail.com',
       _template: 'table',
-      お名前: formData.name,
-      返信先メール: formData.email,
-      対象サービス: getTargetAppName(formData.targetApp),
-      メッセージ: formData.message,
-      送信日時: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+      _captcha: 'false',
+      name: formData.name,
+      email: formData.email,
+      target: getTargetAppName(formData.targetApp),
+      message: formData.message,
+      submittedAt: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
     };
 
+    let sent = false;
+
+    // Attempt 1: Try direct AJAX with short timeout
     try {
-      // Send to both email addresses concurrently to guarantee delivery to both inboxes
-      const requests = TARGET_EMAILS.map((email) =>
-        fetch(`https://formsubmit.co/ajax/${email}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          },
-          body: JSON.stringify(payload)
-        })
-      );
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
 
-      const responses = await Promise.allSettled(requests);
-      const anySuccess = responses.some(
-        (r) => r.status === 'fulfilled' && r.value.ok
-      );
+      const res = await fetch(`https://formsubmit.co/ajax/hp17.host@proton.me`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          ...payload,
+          _cc: 'hp17.host@gmail.com'
+        }),
+        signal: controller.signal
+      });
 
-      if (anySuccess) {
-        setToastMessage({
-          title: '送信完了',
-          desc: 'お問い合わせを受け付けました。メッセージをお送りいただきありがとうございます！',
-          isError: false
-        });
-        setFormData({
-          name: '',
-          email: '',
-          targetApp: 'general',
-          message: ''
-        });
-      } else {
-        throw new Error('すべての送信先への送信に失敗しました');
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        sent = true;
       }
     } catch {
-      // Fallback to mailto if network blocked
+      sent = false;
+    }
+
+    // Attempt 2: If AJAX failed (e.g. activation pending, CORS, or adblocker), submit via hidden form to ensure FormSubmit receives it
+    if (!sent) {
+      try {
+        const hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = 'https://formsubmit.co/hp17.host@proton.me';
+        hiddenForm.target = 'hidden_iframe_submit';
+        hiddenForm.style.display = 'none';
+
+        const fields: Record<string, string> = {
+          _subject: `【hp17 GROUP お問い合わせ】${formData.name}様より (${getTargetAppName(formData.targetApp)})`,
+          _replyto: formData.email,
+          _cc: 'hp17.host@gmail.com',
+          _captcha: 'false',
+          _template: 'table',
+          お名前: formData.name,
+          返信先: formData.email,
+          対象サービス: getTargetAppName(formData.targetApp),
+          内容: formData.message
+        };
+
+        Object.entries(fields).forEach(([k, v]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = k;
+          input.value = v;
+          hiddenForm.appendChild(input);
+        });
+
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+        setTimeout(() => {
+          document.body.removeChild(hiddenForm);
+        }, 1000);
+
+        sent = true;
+      } catch {
+        sent = false;
+      }
+    }
+
+    setIsSubmitting(false);
+
+    if (sent) {
+      setToastMessage({
+        title: '送信完了',
+        desc: 'お問い合わせを受け付けました。メッセージをお送りいただきありがとうございます！',
+        isError: false
+      });
+      setFormData({
+        name: '',
+        email: '',
+        targetApp: 'general',
+        message: ''
+      });
+    } else {
+      // Fallback to mailto
       const subject = encodeURIComponent(`【hp17 お問い合わせ】${formData.name}様より (${getTargetAppName(formData.targetApp)})`);
       const body = encodeURIComponent(
         `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n対象サービス: ${getTargetAppName(formData.targetApp)}\n\n【メッセージ】\n${formData.message}`
@@ -88,16 +139,15 @@ export default function ContactSection() {
 
       setToastMessage({
         title: 'メーラーを起動しました',
-        desc: 'メール送信クライアントを開きました。内容をご確認のうえ送信してください。',
+        desc: 'メールアプリを開きました。内容をご確認のうえ送信してください。',
         isError: false
       });
-    } finally {
-      setIsSubmitting(false);
-      setToastVisible(true);
-      setTimeout(() => {
-        setToastVisible(false);
-      }, 5000);
     }
+
+    setToastVisible(true);
+    setTimeout(() => {
+      setToastVisible(false);
+    }, 5000);
   };
 
   return (
@@ -200,6 +250,15 @@ export default function ContactSection() {
           </div>
         </form>
       </div>
+
+      {/* Hidden iframe for background form submission */}
+      <iframe
+        name="hidden_iframe_submit"
+        id="hidden_iframe_submit"
+        className="hidden"
+        style={{ display: 'none' }}
+        title="Form submission frame"
+      />
 
       {/* Notification Toast Message Box */}
       <div
