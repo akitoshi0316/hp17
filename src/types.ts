@@ -9,7 +9,7 @@ export interface ProductItem {
   accentColor: string;
   gradient: string;
   badgeBg: string;
-  iconName: 'DeckStudy' | 'TypingPro' | 'WaterWeber';
+  iconName: 'DeckStudy' | 'TypingPro' | 'WaterWeber' | 'TaskChecker';
 }
 
 export interface ContactFormData {

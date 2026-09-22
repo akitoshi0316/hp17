@@ -19,7 +19,7 @@ export default function Hero({ isDark }: HeroProps) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              3つのWebプロダクトを公開中
+              4つのWebプロダクトを公開中
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gray-900 dark:text-white">
@@ -29,7 +29,7 @@ export default function Hero({ isDark }: HeroProps) {
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              hp17グループは、日常を快適にする便利ツールや学習アプリを企画・制作する総合ソフトウェア開発チームです。現在3つのオリジナルWebサービスを無料公開しています。
+              hp17グループは、日常を快適にする便利ツールや学習アプリを企画・制作する総合ソフトウェア開発チームです。現在4つのオリジナルWebサービスを無料公開しています。
             </p>
 
             {/* CTA Buttons */}
@@ -55,7 +55,7 @@ export default function Hero({ isDark }: HeroProps) {
             {/* App Highlights Counter */}
             <div className="pt-8 border-t border-gray-200 dark:border-gray-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-sky-600 dark:text-sky-400">3</div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-sky-600 dark:text-sky-400">4</div>
                 <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium mt-0.5">
                   公開中のWebアプリ
                 </div>
@@ -112,7 +112,10 @@ export default function Hero({ isDark }: HeroProps) {
                       &apos;2. hp17 Typing Pro&apos;,
                     </p>
                     <p className="text-emerald-600 dark:text-emerald-400 font-medium">
-                      &apos;3. hp17 Water Weber&apos;
+                      &apos;3. hp17 Water Weber&apos;,
+                    </p>
+                    <p className="text-emerald-600 dark:text-emerald-400 font-medium">
+                      &apos;4. hp17 Task Checker&apos;
                     </p>
                   </div>
                   <p>];</p>
@@ -157,6 +160,21 @@ export default function Hero({ isDark }: HeroProps) {
                       <span className="flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Water Weber
+                      </span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
+                        READY <ExternalLink className="w-3 h-3 opacity-70" />
+                      </span>
+                    </a>
+
+                    <a
+                      href="https://hp17-task-checker.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200/80 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-gray-800 dark:text-sky-200 border border-gray-200/60 dark:border-transparent transition-colors group"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                        Task Checker
                       </span>
                       <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 group-hover:underline">
                         READY <ExternalLink className="w-3 h-3 opacity-70" />

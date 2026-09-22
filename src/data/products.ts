@@ -51,6 +51,23 @@ export const HP17_PRODUCTS: ProductItem[] = [
     gradient: 'from-cyan-500 to-blue-600',
     badgeBg: 'text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/50 border-cyan-200 dark:border-cyan-800',
     iconName: 'WaterWeber'
+  },
+  {
+    id: 'task-checker',
+    name: 'hp17 Task Checker',
+    category: 'タスク管理＆カレンダー',
+    categoryEn: 'TASK MANAGEMENT & TODO',
+    description: 'カレンダー機能と連動した直感的かつスマートなタスク管理・Todoアプリケーション。日々の予定やタスクの進捗をスムーズに整理・追跡できます。',
+    features: [
+      'カレンダー連動の直感的なTodo・タスク管理',
+      '期限やステータスごとのスマート整理',
+      'ブラウザからいつでも素早くアクセス可能'
+    ],
+    url: 'https://hp17-task-checker.vercel.app/',
+    accentColor: '#f59e0b',
+    gradient: 'from-amber-500 to-orange-600',
+    badgeBg: 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-800',
+    iconName: 'TaskChecker'
   }
 ];
 

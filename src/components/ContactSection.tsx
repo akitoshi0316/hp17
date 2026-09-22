@@ -24,6 +24,8 @@ export default function ContactSection() {
         return 'hp17 Typing Pro';
       case 'water-weber':
         return 'hp17 Water Weber';
+      case 'task-checker':
+        return 'hp17 Task Checker';
       default:
         return '全般 / その他';
     }
@@ -219,6 +221,7 @@ export default function ContactSection() {
               <option value="deck-study">hp17 Deck Study</option>
               <option value="typing-pro">hp17 Typing Pro</option>
               <option value="water-weber">hp17 Water Weber</option>
+              <option value="task-checker">hp17 Task Checker</option>
             </select>
           </div>
 
