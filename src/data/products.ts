@@ -68,6 +68,23 @@ export const HP17_PRODUCTS: ProductItem[] = [
     gradient: 'from-amber-500 to-orange-600',
     badgeBg: 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-800',
     iconName: 'TaskChecker'
+  },
+  {
+    id: 'cut-bg',
+    name: 'hp17 Cut BG',
+    category: 'AI画像背景透過ツール',
+    categoryEn: 'IMAGE BACKGROUND REMOVER',
+    description: 'AI自動切り抜き、ワンクリック透過マジックワンド、消しゴム＆復元ブラシ、フリンジ・ステッカー縁取り調整を備えた高機能な画像背景透過Webアプリ。',
+    features: [
+      'AI自動切り抜き＆マジックワンドによる直感透過',
+      '消しゴム・復元ブラシ・境界補正の多彩な調整',
+      '完全ブラウザ完結で手軽かつ安全に処理'
+    ],
+    url: 'https://hp17-cut-bg.vercel.app',
+    accentColor: '#ec4899',
+    gradient: 'from-pink-500 to-rose-600',
+    badgeBg: 'text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 border-pink-200 dark:border-pink-800',
+    iconName: 'CutBg'
   }
 ];
 

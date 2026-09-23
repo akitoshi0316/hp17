@@ -1,4 +1,4 @@
-import { Layers, Keyboard, Droplets, CalendarCheck, Check, ExternalLink } from 'lucide-react';
+import { Layers, Keyboard, Droplets, CalendarCheck, Scissors, Check, ExternalLink } from 'lucide-react';
 import { HP17_PRODUCTS } from '../data/products.ts';
 import { ProductItem } from '../types.ts';
 
@@ -13,6 +13,8 @@ export default function ProductsSection() {
         return <Droplets className="w-7 h-7" />;
       case 'TaskChecker':
         return <CalendarCheck className="w-7 h-7" />;
+      case 'CutBg':
+        return <Scissors className="w-7 h-7" />;
     }
   };
 
@@ -30,11 +32,11 @@ export default function ProductsSection() {
             提供中のWebサービス
           </p>
           <p className="mt-4 text-gray-600 dark:text-gray-400 leading-relaxed">
-            hp17グループが制作・公開している4つの無料Webサービスです。ブラウザから今すぐご利用いただけます。
+            hp17グループが制作・公開している5つの無料Webサービスです。ブラウザから今すぐご利用いただけます。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {HP17_PRODUCTS.map((product) => (
             <div
               key={product.id}
